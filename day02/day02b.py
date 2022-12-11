@@ -10,6 +10,7 @@ class Figure:
     def __init__(self, value, beats, lose):
         self.value = value
         self.beats = beats
+        self.lose = lose
 
 
 rules = {
@@ -19,7 +20,7 @@ rules = {
 }
 
 if __name__ == '__main__':
-    with open(exampleInputFile, 'r') as file:
+    with open(inputFile, 'r') as file:
         lines = file.readlines()
 
     result = 0
@@ -29,17 +30,20 @@ if __name__ == '__main__':
         match_result = split[1]
         print(opponent + " AND " + match_result)
         response = ""
-        if match_result == "Y": #Draw
+        if match_result == "Y":
             response = opponent
-        elif match_result == "X": #Lose
-            response = rules.get(opponent).lose
-        else: #win
+        elif match_result == "X":
             response = rules.get(opponent).beats
+        else:
+            response = rules.get(opponent).lose
 
         if opponent == response:
+            print("draw")
             result += 3 + rules.get(response).value
         elif rules.get(response).beats == opponent:
+            print("win")
             result += 6 + rules.get(response).value
         else:
+            print("lose")
             result += rules.get(response).value
     print(result)
