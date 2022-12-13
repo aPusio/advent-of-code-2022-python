@@ -35,7 +35,6 @@ if __name__ == '__main__':
             boxes_to_move = map_of_stacks[move_from][0:amount]
             del map_of_stacks[move_from][0:amount]
 
-            boxes_to_move.reverse()
             map_of_stacks[move_to] = boxes_to_move + map_of_stacks[move_to]
 
             print(map_of_stacks)
