@@ -94,3 +94,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Check this and learn how to add arrays and touples
+# https://github.com/nthistle/advent-of-code/blob/master/2022/day09/day09_p2.py
