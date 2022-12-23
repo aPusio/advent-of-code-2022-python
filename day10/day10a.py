@@ -3,21 +3,28 @@ exampleInputFile = "./input-example.txt"
 
 
 def main():
-    with open(exampleInputFile, 'r') as file:
+    with open(inputFile, 'r') as file:
         lines = file.readlines()
     result = 0
-    # buffer = [1]
-    cycle = 0
+    # first - because count starts from 1, second - because addition is after the cycle
+    queue = [None, None]
     for line in lines:
         if line.startswith("addx"):
-            
             value = int(line.removeprefix("addx "))
-            cycle += 1
-            print(f'add: {value}')
+            queue.append(None)
+            queue.append(value)
         else:
-            cycle += 1
-            print("noop")
+            queue.append(None)
+    checkpoints = [i for i in range(20, len(queue), 40)]
+    register = 1
+    for i in range(0, len(queue)):
+        if queue[i]:
+            register += queue[i]
+        if i in checkpoints:
+            print(f'Checkpoint! {i}*{register}={i * register}')
+            result += i * register
 
+    print(register)
     print(result)
 
 
